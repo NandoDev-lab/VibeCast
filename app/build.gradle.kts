@@ -74,6 +74,7 @@ dependencies {
     implementation(libs.androidx.media3.exoplayer)
     implementation(libs.androidx.media3.session)
     implementation(libs.ffmpeg.kit)
+    implementation(libs.play.billing)
     implementation("com.google.android.gms:play-services-ads:23.6.0")
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
