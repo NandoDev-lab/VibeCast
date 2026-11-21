@@ -12,22 +12,38 @@ android {
         applicationId = "com.nandohypesoft.vibecast"
         minSdk = 26
         targetSdk = 35
-        versionCode = 8
-        versionName = "2.2.1"
+        versionCode = 9
+        versionName = "2.2.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     signingConfigs {
         create("release") {
-            val keyFile1 = file("../vibecast-release.jks")
-            val keyFile2 = file("C:/Users/Ferna/Documents/chavevibecast")
-            val selectedKey = if (keyFile1.exists()) keyFile1 else if (keyFile2.exists()) keyFile2 else null
+            val keyFileDownloads = file("C:/Users/Ferna/Downloads/CHAVES E CREDENCIAIS VIBECAST-20261121T040113Z-1-001/CHAVES E CREDENCIAIS VIBECAST/chavevibecast.jks")
+            val keyFileDownloads2 = file("C:/Users/Ferna/Downloads/CHAVES E CREDENCIAIS VIBECAST-20261121T040113Z-1-001/CHAVES E CREDENCIAIS VIBECAST/chavevibecast")
+            val keyFileDocs = file("C:/Users/Ferna/Documents/chavevibecast")
+            val keyFileProject = file("../vibecast-release.jks")
+
+            val selectedKey = when {
+                keyFileDownloads.exists() -> keyFileDownloads
+                keyFileDownloads2.exists() -> keyFileDownloads2
+                keyFileDocs.exists() -> keyFileDocs
+                keyFileProject.exists() -> keyFileProject
+                else -> null
+            }
+
             if (selectedKey != null) {
                 storeFile = selectedKey
-                storePassword = if (selectedKey == keyFile2) "132465" else "password"
-                keyAlias = if (selectedKey == keyFile2) "key0" else "wyry-key"
-                keyPassword = if (selectedKey == keyFile2) "132465" else "password"
+                if (selectedKey == keyFileProject) {
+                    storePassword = "password"
+                    keyAlias = "wyry-key"
+                    keyPassword = "password"
+                } else {
+                    storePassword = "132465"
+                    keyAlias = "key0"
+                    keyPassword = "132465"
+                }
             }
         }
     }
