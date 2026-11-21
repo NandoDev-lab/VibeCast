@@ -20,10 +20,15 @@ android {
 
     signingConfigs {
         create("release") {
-            storeFile = file("../vibecast-release.jks")
-            storePassword = "password" // Recomendado usar local.properties
-            keyAlias = "wyry-key"
-            keyPassword = "password"
+            val keyFile1 = file("../vibecast-release.jks")
+            val keyFile2 = file("C:/Users/Ferna/Documents/chavevibecast")
+            val selectedKey = if (keyFile1.exists()) keyFile1 else if (keyFile2.exists()) keyFile2 else null
+            if (selectedKey != null) {
+                storeFile = selectedKey
+                storePassword = if (selectedKey == keyFile2) "132465" else "password"
+                keyAlias = if (selectedKey == keyFile2) "key0" else "wyry-key"
+                keyPassword = if (selectedKey == keyFile2) "132465" else "password"
+            }
         }
     }
 
@@ -34,7 +39,10 @@ android {
             // Remove recursos (imagens, layouts) não utilizados para diminuir o APK
             isShrinkResources = true
 
-            signingConfig = signingConfigs.getByName("release")
+            val relSigning = signingConfigs.findByName("release")
+            if (relSigning?.storeFile?.exists() == true) {
+                signingConfig = relSigning
+            }
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
