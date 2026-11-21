@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="replace" />
 
     <application
         android:allowBackup="true"
@@ -18,7 +19,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Wyry">
+        android:usesCleartextTraffic="true"
+        android:theme="@style/Theme.VibeCast.Starter">
+
+        <!-- ID Real do VibeCast Studio AdMob -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-7917358217182228~8647573907"/>
+
         <service
             android:name=".streaming.StreamingService"
             android:enabled="true"
@@ -28,7 +36,7 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Wyry">
+            android:theme="@style/Theme.VibeCast">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

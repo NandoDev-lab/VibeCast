@@ -23,6 +23,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "wyry"
+rootProject.name = "VibeCast"
 include(":app")
  
