@@ -20,24 +20,20 @@ android {
 
     signingConfigs {
         create("release") {
-            val keyFileNew = file("C:/Users/Ferna/Downloads/vibecast_new_key.jks")
+            val keyFileUpload = file("C:/Users/Ferna/Downloads/vibecast_upload_key.jks")
             val keyFileDownloads = file("C:/Users/Ferna/Downloads/CHAVES E CREDENCIAIS VIBECAST-20261121T040113Z-1-001/CHAVES E CREDENCIAIS VIBECAST/chavevibecast.jks")
-            val keyFileDownloads2 = file("C:/Users/Ferna/Downloads/CHAVES E CREDENCIAIS VIBECAST-20261121T040113Z-1-001/CHAVES E CREDENCIAIS VIBECAST/chavevibecast")
-            val keyFileDocs = file("C:/Users/Ferna/Documents/chavevibecast")
             val keyFileProject = file("../vibecast-release.jks")
 
             val selectedKey = when {
-                keyFileNew.exists() -> keyFileNew
+                keyFileUpload.exists() -> keyFileUpload
                 keyFileDownloads.exists() -> keyFileDownloads
-                keyFileDownloads2.exists() -> keyFileDownloads2
-                keyFileDocs.exists() -> keyFileDocs
                 keyFileProject.exists() -> keyFileProject
                 else -> null
             }
 
             if (selectedKey != null) {
                 storeFile = selectedKey
-                if (selectedKey == keyFileNew) {
+                if (selectedKey == keyFileUpload) {
                     storePassword = "132465"
                     keyAlias = "upload"
                     keyPassword = "132465"
