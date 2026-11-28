@@ -6,14 +6,14 @@ plugins {
 
 android {
     namespace = "com.nandohypesoft.vibecast"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.nandohypesoft.vibecast"
         minSdk = 26
-        targetSdk = 35
-        versionCode = 9
-        versionName = "2.2.2"
+        targetSdk = 36
+        versionCode = 10
+        versionName = "2.2.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
